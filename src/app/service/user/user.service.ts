@@ -19,15 +19,20 @@ export class UserService {
 
     constructor(public apiService: ApiService,public localStorage:MyLocalStorageService, public helperService:HelperService) {
         UserService.staticApiService = apiService;
+
+        this.isLoggedIn = true;
+        this.userData = {
+            name: "David Valentino"
+        }
     }
 
 
 
     public loginLocalStorage(){
-        if(this.localStorage.getEmail() && this.localStorage.getPassword()){
-            this.apiExecuteLogin(this.localStorage.getEmail(), this.localStorage.getPassword());
-
-        }
+        // if(this.localStorage.getEmail() && this.localStorage.getPassword()){
+        //     this.apiExecuteLogin(this.localStorage.getEmail(), this.localStorage.getPassword());
+        //
+        // }
     }
 
 
@@ -124,18 +129,18 @@ export interface LoginInterface extends ApiBaseResponseInterface {
 
 export class UserDataInterface{
 
-    isSuccess:boolean = false;
-    message:string = "";
+    isSuccess?:boolean = false;
+    message?:string = "";
 
-    email: string = "";
-    id: number = -1;
-    name: string = "";
-    birthDate: string = "";
-    reset: number =-1;
-    phone: string = "";
-    address:string = "";
-    created_at:string = "";
-    nbg:string = "";
+    email?: string = "";
+    id?: number = -1;
+    name?: string = "";
+    birthDate?: string = "";
+    reset?: number =-1;
+    phone?: string = "";
+    address?:string = "";
+    created_at?:string = "";
+    nbg?:string = "";
 
     get_previledge? : PreviledgeInterface = {key:"", value:""};
     get_photo?: PhotosDataInterface;

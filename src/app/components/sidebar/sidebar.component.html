@@ -63,12 +63,38 @@
 
     <div class="nav-container">
         <ul class="nav">
-            <li routerLinkActive="active" *ngFor="let menuItem of sideMenu" class="{{menuItem.class}}">
-                <a  [routerLink]="[menuItem.path,menuItem.param]">
-                    <i class="material-icons">{{menuItem.icon}}</i>
-                    <p>{{menuItem.title}} <span class='badge' style="background-color: tomato" *ngIf="menuItem.badge && userService.notification && +userService.notification.data[menuItem.badge] > 0 ">{{userService.notification.data[menuItem.badge]}}</span></p>
-                </a>
+            <li routerLinkActive="active" *ngFor="let menuItem of sideMenu"  class="{{menuItem.class}}">
+
+                <ng-container  *ngTemplateOutlet="menu;context:{menuItem:menuItem, level:0}" ></ng-container>
             </li>
         </ul>
     </div>
 </div>
+
+<ng-template #menu let-menuItem="menuItem" let-level="level">
+
+    <div *ngIf="menuItem.subMenus" (click)="menuItem.isOpen = !menuItem.isOpen">
+        <a  [style.paddingLeft]="(level * 20) + 'px' " >
+            <i class="material-icons">{{menuItem.icon}}</i>
+            <span *ngIf="!menuItem.isOpen && level ==0">^</span>
+            <span *ngIf="menuItem.isOpen && level ==0">v</span>
+            <p>{{menuItem.title}} <span class='badge' style="background-color: tomato" *ngIf="menuItem.badge && userService.notification && +userService.notification.data[menuItem.badge] > 0 ">{{userService.notification.data[menuItem.badge]}}</span></p>
+        </a>
+        <div class="animationExpandBottom" *ngIf="menuItem.isOpen || level > 0">
+            <div *ngFor="let subMenu  of menuItem.subMenus">
+                <ng-container  *ngTemplateOutlet="menu;context:{menuItem:subMenu, level:level+1}" ></ng-container>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div *ngIf="!menuItem.subMenus">
+        <a  [style.paddingLeft]="(level * 20) + 'px'" [routerLink]="[menuItem.path,menuItem.param]">
+            <i class="material-icons">{{menuItem.icon}}</i>
+            <p>{{menuItem.title}} <span class='badge' style="background-color: tomato" *ngIf="menuItem.badge && userService.notification && +userService.notification.data[menuItem.badge] > 0 ">{{userService.notification.data[menuItem.badge]}}</span></p>
+        </a>
+    </div>
+
+</ng-template>

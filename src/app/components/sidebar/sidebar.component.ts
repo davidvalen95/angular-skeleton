@@ -10,13 +10,88 @@ declare interface RouteInfo {
     class: string;
     badge?: string;
     param: {};
+
+    subMenus?: RouteInfo[];
+    isOpen: boolean;
 }
 
 export const ROUTES: RouteInfo[] = [
-    {path: 'dashboard', title: 'Dashboard', icon: 'dashboard', class: '', param: {}},
+    // {path: 'dashboard', title: 'Dashboard', icon: 'dashboard', class: '', param: {}},
+    {
+        path: 'sample',
+        title: 'Sample',
+        icon: 'dashboard',
+        class: '', param: {},
+        isOpen: false,
+        subMenus: [
+            {
+                path: 'sample',
+                title: 'Create Sample',
+                icon: 'dashboard', class: '',
+                param: {},
+                isOpen:false,
+                subMenus:[
+                    {
+                        path: 'cndn',
+                        title: 'third level',
+                        icon: 'dashboard', class: '',
+                        param: {},
+                        isOpen:false},
+
+                ]
+            },
+            {
+                path: 'sample',
+                title: 'Confirmed Sample',
+                icon: 'dashboard',
+                class: '',
+                param: {},
+                isOpen:false
+            },
+        ]
+    },
+
+
+
+
+
+
+    {
+        path: 'cndn',
+        title: 'CN / DN',
+        icon: 'dashboard',
+        class: '', param: {},
+        isOpen: false,
+        subMenus: [
+            {
+                path: 'cndn',
+                title: 'Create CN / DN',
+                icon: 'dashboard', class: '',
+                param: {},
+                isOpen:false,
+                subMenus:[
+                    {
+                        path: 'cndn',
+                        title: 'third level',
+                        icon: 'dashboard', class: '',
+                        param: {},
+                        isOpen:false},
+
+                ]
+            },
+            {
+                path: 'cndn',
+                title: 'Confirmed CN / DN',
+                icon: 'dashboard',
+                class: '',
+                param: {},
+                isOpen:false
+            },
+        ]
+    },
     // {path: 'profile', title: 'My Profile', icon: 'person', class: '', param: {}},
-    {path: 'user-list', title: 'User List', icon: 'supervisor_account', class: '', param: {}},
-    {path: 'branch/list', title: 'Branch list', icon: 'home', class: '', param: {}},
+    // {path: 'user-list', title: 'User List', icon: 'supervisor_account', class: '', param: {}},
+    // {path: 'branch/list', title: 'Branch list', icon: 'home', class: '', param: {}},
     //
     // {path: 'database/select-list', title: 'Select List Configuration', icon: 'content_paste', class: '', param: {}},
     // {path: 'database/page-title', title: 'Page Title', icon: 'content_paste', class: '', param: {}},
@@ -34,7 +109,7 @@ export const ROUTES: RouteInfo[] = [
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
-    styleUrls: ['./sidebar.component.css']
+    styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
     sideMenu: any[];
@@ -45,7 +120,7 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit() {
         this.sideMenu = ROUTES.filter(menuItem => menuItem);
-        this.sideMenu[1].param = {id: this.userService.userData.id};
+        // this.sideMenu[1].param = {id: this.userService.userData.id};
     }
 
     isMobileMenu() {

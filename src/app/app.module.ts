@@ -9,14 +9,12 @@ import {ComponentsModule} from './components/components.module';
 
 import {AppComponent} from './app.component';
 
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {UserProfileComponent} from './user-profile/user-profile.component';
-import {TableListComponent} from './table-list/table-list.component';
-import {TypographyComponent} from './typography/typography.component';
-import {IconsComponent} from './icons/icons.component';
-import {MapsComponent} from './maps/maps.component';
-import {NotificationsComponent} from './notifications/notifications.component';
-import {UpgradeComponent} from './upgrade/upgrade.component';
+import {DashboardComponent} from './page/dashboard/dashboard.component';
+import {UserProfileComponent} from './page/user-profile/user-profile.component';
+import {TableListComponent} from './example/table-list/table-list.component';
+import {TypographyComponent} from './example/typography/typography.component';
+import {IconsComponent} from './example/icons/icons.component';
+import {UpgradeComponent} from './example/upgrade/upgrade.component';
 import {UserService} from './service/user/user.service';
 import {ApiService} from './service/api/api.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -34,6 +32,8 @@ import { AbsenceListComponent } from './page/module/absence/absence-list/absence
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { ThreadListComponent } from './page/thread/thread-list/thread-list.component';
 import { ThreadDetailComponent } from './page/thread/thread-detail/thread-detail.component';
+import { CndnListComponent } from './page/cndn/cndn-list/cndn-list.component';
+import { CndnDetailComponent } from './page/cndn/cndn-detail/cndn-detail.component';
 
 
 @NgModule({
@@ -44,8 +44,6 @@ import { ThreadDetailComponent } from './page/thread/thread-detail/thread-detail
         TableListComponent,
         TypographyComponent,
         IconsComponent,
-        MapsComponent,
-        NotificationsComponent,
         UpgradeComponent,
         LoginComponent,
         ProfileComponent,
@@ -55,6 +53,8 @@ import { ThreadDetailComponent } from './page/thread/thread-detail/thread-detail
         AbsenceListComponent,
         ThreadListComponent,
         ThreadDetailComponent,
+        CndnListComponent,
+        CndnDetailComponent,
 
 
 
